@@ -1,0 +1,34 @@
+{
+    "name": "ansas/ebay-rest-api",
+    "keywords": [
+        "ebay",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "license": "unlicense",
+    "authors": [
+        {
+            "name": "Eike Grundke"
+        }
+    ],
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/psr7": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^2.12"
+    },
+    "autoload": {
+        "psr-4": { "Ansas\\Ebay\\" : "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Ansas\\Ebay\\Test\\" : "test/" }
+    }
+}
