@@ -7,8 +7,7 @@
 
 ### Requirements
 
-PHP 7.3 and later.
-Should also work with PHP 8.0 but has not been tested.
+PHP 7.2 and later.
 
 ### Composer
 
@@ -16,8 +15,14 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 
 ```json
 {
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    }
+  ],
   "require": {
-    "ansas/ebay-rest-api": "*@dev"
+    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
   }
 }
 ```

@@ -1,0 +1,6 @@
+{
+  "packageName": "ansas/ebay-rest-api",
+  "invokerPackage": "Ansas\\Ebay",
+  "srcBasePath": "src",
+  "variableNamingConvention": "camelCase"
+}
