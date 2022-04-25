@@ -1733,15 +1733,12 @@ class TaskApi
         // form params
         if ($fileName !== null) {
             $multipart = true;
-            $formParams['fileName'] = [];
-            $paramFiles = is_array($fileName) ? $fileName : [$fileName];
-            foreach ($paramFiles as $paramFile) {
-                $formParams['fileName'][] = \GuzzleHttp\Psr7\try_fopen(
-                    ObjectSerializer::toFormValue($paramFile),
-                    'rb'
-                );
-            }
+            $formParams['contents'] = \GuzzleHttp\Psr7\try_fopen(
+                ObjectSerializer::toFormValue($fileName),
+                'rb'
+            );
         }
+
         // form params
         if ($modificationDate !== null) {
             $formParams['modificationDate'] = ObjectSerializer::toFormValue($modificationDate);
@@ -1777,18 +1774,8 @@ class TaskApi
         // for model (json/xml)
         if (count($formParams) > 0) {
             if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
+
+                $httpBody = new MultipartStream([$formParams]);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode($formParams);
