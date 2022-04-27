@@ -619,8 +619,7 @@ class TaskApi
      */
     public function getResultFile($taskId)
     {
-        list($response) = $this->getResultFileWithHttpInfo($taskId);
-        return $response;
+        return $this->getResultFileWithHttpInfo($taskId);
     }
 
     /**
@@ -667,17 +666,7 @@ class TaskApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('object' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, 'object', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return $responseBody;
             }
 
             $returnType = 'object';
